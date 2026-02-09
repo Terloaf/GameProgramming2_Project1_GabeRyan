@@ -7,6 +7,13 @@ using System.Threading.Tasks;
 
 namespace GameProgramming2_Project1_GabeRyan
 {
+
+    struct PersonInfo
+    {
+        public string _name;
+        public int _birthyear;
+    }
+
     internal class Program
     {
          public static GameManager _gameManager;
@@ -23,13 +30,14 @@ namespace GameProgramming2_Project1_GabeRyan
             while (true)
             {
                 map.DisplayMap();
-                player.PlayerHandler();
+                player.PlayerMove();
                 
 
 
             }
 
-            
+            PersonInfo person = new PersonInfo();
+            person._name = "guy";
 
 
         }

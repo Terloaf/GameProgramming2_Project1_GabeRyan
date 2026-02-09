@@ -8,24 +8,29 @@ namespace GameProgramming2_Project1_GabeRyan
 {
     internal class Player
     {
-        public int _playerXPos = 0;
-        public int _playerYPos = 0;
+
+        Position _position;
 
         public int _pHealth;
         public string _pDisplay;
         public ConsoleColor _pColour;
 
-        public Player(int health, string display, ConsoleColor colour)
+        public Player(int health, string display, ConsoleColor colour, Position position)
         {
             _pHealth = health;
             _pDisplay = display;
             _pColour = colour;
+            _position = position;
         }
 
-        public void PlayerHandler()
+        public void PlayerMove()
         {
             DisplayPlayer();
 
+            
+
+
+           
             int playerXinput = 0;
             int playerYinput = 0;
 
@@ -39,23 +44,23 @@ namespace GameProgramming2_Project1_GabeRyan
             if (Input.Key == ConsoleKey.D) playerXinput += 1;
             if (Input.Key == ConsoleKey.A) playerXinput -= 1;
 
-            _playerXPos += playerXinput;
-            _playerYPos += playerYinput;
+            _position._y += playerXinput;
+            _position._y += playerYinput;
 
-            if (playerXinput == -1 && _playerXPos == -1)
+            if (playerXinput == -1 && _position._x == -1)
             {
-                _playerXPos += 1;
+                _position._x += 1;
                 return;
             }
 
-            if (playerYinput == -1 && _playerYPos == -1)
+            if (playerYinput == -1 && _position._y == -1)
             {
-                _playerYPos += 1;
+                _position._y += 1;
                 return;
             }
-            if(playerYinput == 1 && _playerYPos == 30)
+            if(playerYinput == 1 && _position._y == 30)
             {
-                _playerYPos -= 1;
+                _position._y -= 1;
                 return;
             }
 
@@ -66,7 +71,7 @@ namespace GameProgramming2_Project1_GabeRyan
 
         private void DisplayPlayer()
         {
-            Console.SetCursorPosition(_playerXPos, _playerYPos);
+            Console.SetCursorPosition(_position._x, _position._y);
             Console.ForegroundColor = _pColour;
             Console.Write(_pDisplay);
             Console.ResetColor();

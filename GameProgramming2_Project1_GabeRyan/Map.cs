@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -13,6 +14,8 @@ namespace GameProgramming2_Project1_GabeRyan
         public string[] _map;
         public string[] _boarder = { "═", "║" };
 
+        public bool[,] _occupiedSpaces;
+
         int _mapOffset = -1;
 
         
@@ -21,6 +24,21 @@ namespace GameProgramming2_Project1_GabeRyan
         public void LoadMap(string mapPath)
         {
             _map = File.ReadAllLines(mapPath);
+
+            _occupiedSpaces = new bool[_map.Length, _map[0].Length];
+        }
+
+        public bool IsSpaceOccupied(Position position)
+        {
+            // check _occupiedSpaces if position = true or false
+
+            return _occupiedSpaces[position._y, position._x];
+
+        }
+
+        public void SetOccupied(Position position, bool state)
+        {
+
         }
 
         public void DisplayMap()
@@ -38,7 +56,7 @@ namespace GameProgramming2_Project1_GabeRyan
 
             Console.Write("\n");
 
-
+            
 
         }
 

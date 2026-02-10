@@ -12,7 +12,7 @@ namespace GameProgramming2_Project1_GabeRyan
     {
 
         public string[] _map;
-        public string[] _boarder = { "═", "║" };
+        public string[] _boarder = { "═", "║", "^", "#", "~" };
 
         public bool[,] _occupiedSpaces;
 
@@ -38,7 +38,7 @@ namespace GameProgramming2_Project1_GabeRyan
 
         public void SetOccupied(Position position, bool state)
         {
-
+            _occupiedSpaces[position._y, position._x] = state;
         }
 
         public void DisplayMap()

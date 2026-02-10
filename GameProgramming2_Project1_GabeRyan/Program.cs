@@ -22,7 +22,7 @@ namespace GameProgramming2_Project1_GabeRyan
         {
             Console.CursorVisible = false;
             Map map = new Map();
-            Player player = new Player(health: 3, display: "X", colour: ConsoleColor.Blue);
+            Player player = new Player(health: 3, display: "X", colour: ConsoleColor.Blue, position:);
             _gameManager = new GameManager(map: map, player: player);
 
 

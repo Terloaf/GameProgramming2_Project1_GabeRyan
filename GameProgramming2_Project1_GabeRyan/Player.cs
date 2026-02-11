@@ -9,7 +9,7 @@ namespace GameProgramming2_Project1_GabeRyan
     internal class Player
     {
 
-        Position _position;
+        public Position _position;
         public Health _health;
         public string _pDisplay;
         public ConsoleColor _pColour;

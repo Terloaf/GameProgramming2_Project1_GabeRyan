@@ -27,9 +27,9 @@ namespace GameProgramming2_Project1_GabeRyan
         {
             Console.CursorVisible = false;
             Map map = new Map();
-
-            Player player = new Player(display: "X", colour: ConsoleColor.Blue, position: new Position(1, 1), new Health(3));
-            _gameManager = new GameManager(map: map, player: player, isPlaying: true);
+            Enemy enemy = new Enemy(display: "X", colour: ConsoleColor.Red, position: new Position(20, 20), new Health(2));
+            Player player = new Player(display: "O", colour: ConsoleColor.Blue, position: new Position(1, 1), new Health(3));
+            _gameManager = new GameManager(map: map, player: player, enemy: enemy, isPlaying: true);
 
 
             map.LoadMap("mapData.txt");
@@ -52,6 +52,7 @@ namespace GameProgramming2_Project1_GabeRyan
             {
                 map.DisplayMap();
                 player.PlayerMove();
+                enemy.EnemyMove();
                 player.GameOverCheck();
                 
                 
@@ -62,10 +63,6 @@ namespace GameProgramming2_Project1_GabeRyan
 
         }
 
-
-        {
-            
-        }
        
     }
 }

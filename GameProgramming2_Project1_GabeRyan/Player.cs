@@ -10,14 +10,14 @@ namespace GameProgramming2_Project1_GabeRyan
     {
 
         Position _position;
-
-        public int _pHealth;
+        public Health _health;
         public string _pDisplay;
         public ConsoleColor _pColour;
 
-        public Player(int health, string display, ConsoleColor colour, Position position)
+        public Player(string display, ConsoleColor colour, Position position, Health health)
         {
-            _pHealth = health;
+
+            _health = health;
             _pDisplay = display;
             _pColour = colour;
             _position = position;
@@ -84,6 +84,8 @@ namespace GameProgramming2_Project1_GabeRyan
             Console.Clear();
         }
 
+        
+
         private void DisplayPlayer()
         {
             Console.SetCursorPosition(_position._x, _position._y);
@@ -92,11 +94,17 @@ namespace GameProgramming2_Project1_GabeRyan
             Console.ResetColor();
 
             Console.SetCursorPosition(50, 20);
-            Console.Write(_pHealth);
+            Console.Write($"Health {_health._currentHealth}");
 
         }
 
-
+        public void GameOverCheck()
+        {
+            if(_health._currentHealth <= 0)
+            {
+                Program._gameManager._isPlaying = false;
+            }
+        }
 
     }
 }

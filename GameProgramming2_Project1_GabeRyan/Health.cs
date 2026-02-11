@@ -6,27 +6,38 @@ using System.Threading.Tasks;
 
 namespace GameProgramming2_Project1_GabeRyan
 {
-    internal class Health
+    internal struct Health
     {
-        int _maxHealth;
-        int _currentHealth;
-
-        public Health(int MaxHealth, int currentHealth)
+        public int _maxHealth;
+        public int _currentHealth;
+        public Health(int maxHealth)
         {
-            _maxHealth = MaxHealth;
-            _currentHealth = currentHealth;
+            _maxHealth = maxHealth;
+            _currentHealth = maxHealth;
+
         }
-
-
-
-        public override void TakeDmg()
+        public void TakeDmg()
         {
             _currentHealth -= 1;
-            if(_currentHealth < 0)
+            if(_currentHealth <= 0)
             {
                 _currentHealth = 0;
             }
+
         }
+
+        public void Heal()
+        {
+            _currentHealth += 1;
+            if(_currentHealth >= _maxHealth)
+            {
+                _currentHealth = _maxHealth;
+            }
+        }
+
+       
+           
+
 
     }
 }

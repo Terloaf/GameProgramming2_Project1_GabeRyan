@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -16,14 +17,19 @@ namespace GameProgramming2_Project1_GabeRyan
 
     internal class Program
     {
-         public static GameManager _gameManager;
+        public static GameManager _gameManager;
+
+
+
+
 
         static void Main(string[] args)
         {
             Console.CursorVisible = false;
             Map map = new Map();
-            Player player = new Player(health: 3, display: "X", colour: ConsoleColor.Blue, position: new Position(1, 1));
-            _gameManager = new GameManager(map: map, player: player);
+
+            Player player = new Player(display: "X", colour: ConsoleColor.Blue, position: new Position(1, 1), new Health(3));
+            _gameManager = new GameManager(map: map, player: player, isPlaying: true);
 
 
             map.LoadMap("mapData.txt");
@@ -42,12 +48,13 @@ namespace GameProgramming2_Project1_GabeRyan
             }
             
            
-            while (true)
+            while(_gameManager._isPlaying)
             {
                 map.DisplayMap();
                 player.PlayerMove();
+                player.GameOverCheck();
                 
-
+                
 
             }
 
@@ -56,6 +63,9 @@ namespace GameProgramming2_Project1_GabeRyan
         }
 
 
+        {
+            
+        }
        
     }
 }

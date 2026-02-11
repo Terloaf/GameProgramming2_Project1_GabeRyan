@@ -10,14 +10,15 @@ namespace GameProgramming2_Project1_GabeRyan
     {
         public Map _map;
         public Player _player;
+        public bool _isPlaying;
 
 
-        
 
-        public GameManager(Map map, Player player)
+        public GameManager(Map map, Player player, bool isPlaying)
         {
             _map = map;
             _player = player;
+            _isPlaying = isPlaying;
 
         }
     }

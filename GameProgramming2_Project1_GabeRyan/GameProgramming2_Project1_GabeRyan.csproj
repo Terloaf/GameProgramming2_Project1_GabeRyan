@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="CollisionSystem.cs" />
     <Compile Include="GameManager.cs" />
+    <Compile Include="Health.cs" />
     <Compile Include="Map.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Position.cs" />

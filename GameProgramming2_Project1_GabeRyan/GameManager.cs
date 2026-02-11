@@ -11,12 +11,14 @@ namespace GameProgramming2_Project1_GabeRyan
         public Map _map;
         public Player _player;
 
+
         
 
         public GameManager(Map map, Player player)
         {
             _map = map;
             _player = player;
+
         }
     }
 }

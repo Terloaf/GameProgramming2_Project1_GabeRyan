@@ -12,7 +12,7 @@ namespace GameProgramming2_Project1_GabeRyan
     {
 
         public string[] _map;
-        public string[] _boarder = { "═", "║", "^", "#", "~" };
+        public char[] _boarder = {'═', '║', '^', '#', '~'};
 
         public bool[,] _occupiedSpaces;
 
@@ -38,7 +38,7 @@ namespace GameProgramming2_Project1_GabeRyan
 
         public void SetOccupied(Position position, bool state)
         {
-            _occupiedSpaces[position._y, position._x] = state;
+            _occupiedSpaces[position._x, position._y] = state;
         }
 
         public void DisplayMap()
@@ -58,6 +58,19 @@ namespace GameProgramming2_Project1_GabeRyan
 
             
 
+        }
+
+        public bool CheckCharInBoarder(char boarderchar)
+        {
+            for(int i = 0; i < _boarder.Length; i++)
+            {
+                if (_boarder[i] == boarderchar)
+                {
+                    return true;
+                }
+               
+            }
+            return false;
         }
 
     }

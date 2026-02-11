@@ -44,12 +44,22 @@ namespace GameProgramming2_Project1_GabeRyan
             if (Input.Key == ConsoleKey.D) playerXinput += 1;
             if (Input.Key == ConsoleKey.A) playerXinput -= 1;
 
-            _position._y += playerXinput;
+            
+
+            _position._x += playerXinput;
             _position._y += playerYinput;
+
+            
 
             if (playerXinput == -1 && _position._x == -1)
             {
                 _position._x += 1;
+                return;
+            }
+
+            if (playerXinput == 1 && _position._x == Program._gameManager._map._map[0].Length)
+            {
+                _position._x -= 1;
                 return;
             }
 
@@ -58,13 +68,18 @@ namespace GameProgramming2_Project1_GabeRyan
                 _position._y += 1;
                 return;
             }
-            if(playerYinput == 1 && _position._y == 30)
+            if(playerYinput == 1 && _position._y == Program._gameManager._map._map.Length)
             {
                 _position._y -= 1;
                 return;
             }
-
             
+            if (Program._gameManager._map.IsSpaceOccupied(_position) == true)
+            {
+                _position._x -= playerXinput;
+                _position._y -= playerYinput;
+            }
+
             DisplayPlayer();
             Console.Clear();
         }

@@ -22,11 +22,26 @@ namespace GameProgramming2_Project1_GabeRyan
         {
             Console.CursorVisible = false;
             Map map = new Map();
-            Player player = new Player(health: 3, display: "X", colour: ConsoleColor.Blue, position:);
+            Player player = new Player(health: 3, display: "X", colour: ConsoleColor.Blue, position: new Position(1, 1));
             _gameManager = new GameManager(map: map, player: player);
 
 
             map.LoadMap("mapData.txt");
+
+            for(int i = 0; i < map._map.Length; i++)
+            {
+                for(int j = 0; j < map._map[0].Length; j++)
+                {
+                    if (map.CheckCharInBoarder(map._map[i][j]))
+                    {
+                        map.SetOccupied(new Position(i, j), true);
+                    }
+                    
+                }
+                
+            }
+            
+           
             while (true)
             {
                 map.DisplayMap();
@@ -36,8 +51,6 @@ namespace GameProgramming2_Project1_GabeRyan
 
             }
 
-            PersonInfo person = new PersonInfo();
-            person._name = "guy";
 
 
         }

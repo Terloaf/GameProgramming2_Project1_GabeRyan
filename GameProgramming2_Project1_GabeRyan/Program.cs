@@ -30,7 +30,8 @@ namespace GameProgramming2_Project1_GabeRyan
             Map map = new Map();
             Enemy enemy = new Enemy(display: "X", colour: ConsoleColor.Red, position: new Position(20, 20), new Health(2));
             Player player = new Player(display: "O", colour: ConsoleColor.Blue, position: new Position(1, 1), new Health(3));
-            _gameManager = new GameManager(map: map, player: player, enemy: enemy, isPlaying: true);
+            Collectables collectables = new Collectables(position: new Position(0, 0));
+            _gameManager = new GameManager(map: map, player: player, enemy: enemy, collectables: collectables ,isPlaying: true);
 
 
             map.LoadMap("mapData.txt");
@@ -55,6 +56,7 @@ namespace GameProgramming2_Project1_GabeRyan
             {
                 
                 map.DisplayMap();
+                collectables.SpawnCollectable();
                 player.PlayerMove();
                 enemy.EnemyMove();
                 map.DisplayMap();

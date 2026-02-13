@@ -46,7 +46,6 @@ namespace GameProgramming2_Project1_GabeRyan
             Console.SetCursorPosition(0, 0);
             for (int i = 0; i < _map.Length; i++)
             {
-                
                 Console.WriteLine(_map[i]);
 
 

@@ -60,6 +60,7 @@ namespace GameProgramming2_Project1_GabeRyan
                     _position._x -= playerXinput;
                     _position._y -= playerYinput;
                     Program._gameManager._collectables._collectablesCount += 1;
+                    Program._gameManager._collectables._collectablesCurrentlyActive = 0;
                 }
 
                     if (playerXinput == -1 && _position._x == -1)
@@ -120,8 +121,14 @@ namespace GameProgramming2_Project1_GabeRyan
             if(_health._currentHealth <= 0)
             {
                 Program._gameManager._isPlaying = false;
+                Console.Clear();
+                Console.WriteLine("You Lose");
+                Console.ReadKey();
+                Environment.Exit(0);
             }
         }
+
+        
 
     }
 }

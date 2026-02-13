@@ -26,5 +26,11 @@ namespace GameProgramming2_Project1_GabeRyan
             _collectables = collectables;
 
         }
+
+        public void ForceEnemyTurn()
+        {
+            Program._gameManager._playerTurn = false;
+
+        }
     }
 }

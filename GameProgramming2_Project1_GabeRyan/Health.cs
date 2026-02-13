@@ -35,7 +35,10 @@ namespace GameProgramming2_Project1_GabeRyan
             }
         }
 
-       
+       public void RespawnHealth()
+        {
+            _currentHealth = _maxHealth;
+        }
            
 
 

@@ -54,15 +54,15 @@ namespace GameProgramming2_Project1_GabeRyan
             
             while (_gameManager._isPlaying)
             {
-                
+                Thread.Sleep(17);
                 map.DisplayMap();
                 collectables.SpawnCollectable();
                 player.PlayerMove();
                 enemy.EnemyMove();
-                map.DisplayMap();
                 player.GameOverCheck();
                
-                
+
+
 
 
             }

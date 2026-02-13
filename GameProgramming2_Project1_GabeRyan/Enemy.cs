@@ -87,7 +87,7 @@ namespace GameProgramming2_Project1_GabeRyan
             }
             Program._gameManager._playerTurn = true;
 
-            Console.Clear();
+            
         }
 
 

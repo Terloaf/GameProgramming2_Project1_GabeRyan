@@ -4,6 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace GameProgramming2_Project1_GabeRyan
@@ -46,16 +47,21 @@ namespace GameProgramming2_Project1_GabeRyan
                 }
                 
             }
+
+            Thread.Sleep(17);
             
-           
-            while(_gameManager._isPlaying)
+            
+            while (_gameManager._isPlaying)
             {
+                
                 map.DisplayMap();
                 player.PlayerMove();
                 enemy.EnemyMove();
+                map.DisplayMap();
                 player.GameOverCheck();
+               
                 
-                
+
 
             }
 

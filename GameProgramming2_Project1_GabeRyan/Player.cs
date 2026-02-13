@@ -26,62 +26,73 @@ namespace GameProgramming2_Project1_GabeRyan
         public void PlayerMove()
         {
             DisplayPlayer();
-
-            
-
-
-           
-            int playerXinput = 0;
-            int playerYinput = 0;
-
-            if (!Console.KeyAvailable)
+            if (Program._gameManager._playerTurn == true)
             {
-                return;
+                
+                int playerXinput = 0;
+                int playerYinput = 0;
+
+                if (!Console.KeyAvailable)
+                {
+                    return;
+                }
+                
+                ConsoleKeyInfo Input = Console.ReadKey(true);
+                if (Input.Key == ConsoleKey.W) playerYinput -= 1;
+                if (Input.Key == ConsoleKey.S) playerYinput += 1;
+                if (Input.Key == ConsoleKey.D) playerXinput += 1;
+                if (Input.Key == ConsoleKey.A) playerXinput -= 1;
+
+
+                
+                _position._x += playerXinput;
+                _position._y += playerYinput;
+
+                if (Program._gameManager._enemy._position._x == _position._x && Program._gameManager._enemy._position._y == _position._y)
+                {
+                    Program._gameManager._enemy._health.TakeDmg();
+                    _position._x -= playerXinput;
+                    _position._y -= playerYinput;
+                    return;
+                }
+
+                if (playerXinput == -1 && _position._x == -1)
+                {
+                    _position._x += 1;
+                    return;
+                }
+
+                if (playerXinput == 1 && _position._x == Program._gameManager._map._map[0].Length)
+                {
+                    _position._x -= 1;
+                    return;
+                }
+
+                if (playerYinput == -1 && _position._y == -1)
+                {
+                    _position._y += 1;
+                    return;
+                }
+                if (playerYinput == 1 && _position._y == Program._gameManager._map._map.Length)
+                {
+                    _position._y -= 1;
+                    return;
+                }
+                
+
+                if (Program._gameManager._map.IsSpaceOccupied(_position) == true)
+                {
+                    _position._x -= playerXinput;
+                    _position._y -= playerYinput;
+                }
+
+                
+                Program._gameManager._playerTurn = false;
+                
             }
-            ConsoleKeyInfo Input = Console.ReadKey(true);
-            if (Input.Key == ConsoleKey.W) playerYinput -= 1;
-            if (Input.Key == ConsoleKey.S) playerYinput += 1;
-            if (Input.Key == ConsoleKey.D) playerXinput += 1;
-            if (Input.Key == ConsoleKey.A) playerXinput -= 1;
-
-            
-
-            _position._x += playerXinput;
-            _position._y += playerYinput;
-
-            
-
-            if (playerXinput == -1 && _position._x == -1)
-            {
-                _position._x += 1;
-                return;
-            }
-
-            if (playerXinput == 1 && _position._x == Program._gameManager._map._map[0].Length)
-            {
-                _position._x -= 1;
-                return;
-            }
-
-            if (playerYinput == -1 && _position._y == -1)
-            {
-                _position._y += 1;
-                return;
-            }
-            if(playerYinput == 1 && _position._y == Program._gameManager._map._map.Length)
-            {
-                _position._y -= 1;
-                return;
-            }
-            
-            if (Program._gameManager._map.IsSpaceOccupied(_position) == true)
-            {
-                _position._x -= playerXinput;
-                _position._y -= playerYinput;
-            }
-
-            DisplayPlayer();
             Console.Clear();
+
+
         }
 
         

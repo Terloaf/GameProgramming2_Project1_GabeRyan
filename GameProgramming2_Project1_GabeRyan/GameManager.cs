@@ -8,6 +8,7 @@ namespace GameProgramming2_Project1_GabeRyan
 {
     internal class GameManager
     {
+        public bool _playerTurn = true;
         public Map _map;
         public Player _player;
         public bool _isPlaying;
@@ -20,6 +21,7 @@ namespace GameProgramming2_Project1_GabeRyan
             _map = map;
             _player = player;
             _isPlaying = isPlaying;
+            _enemy = enemy;
 
         }
     }

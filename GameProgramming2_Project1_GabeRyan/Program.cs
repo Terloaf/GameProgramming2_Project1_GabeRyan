@@ -61,10 +61,6 @@ namespace GameProgramming2_Project1_GabeRyan
                 enemy.EnemyMove();
                 player.GameOverCheck();
                
-
-
-
-
             }
 
 

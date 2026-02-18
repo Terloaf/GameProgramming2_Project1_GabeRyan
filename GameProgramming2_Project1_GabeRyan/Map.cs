@@ -12,7 +12,7 @@ namespace GameProgramming2_Project1_GabeRyan
     {
 
         public string[] _map;
-        public char[] _boarder = {'═', '║', '^', '#', '~'};
+        public char[] _boarder = {'═', '║', '^', '#', '~',};
 
         public bool[,] _occupiedSpaces;
 

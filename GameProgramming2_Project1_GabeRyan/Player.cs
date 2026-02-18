@@ -25,7 +25,7 @@ namespace GameProgramming2_Project1_GabeRyan
 
         public void PlayerMove()
         {
-            DisplayPlayer();
+            
             if (Program._gameManager._playerTurn == true)
             {
                 
@@ -48,13 +48,18 @@ namespace GameProgramming2_Project1_GabeRyan
                 _position._x += playerXinput;
                 _position._y += playerYinput;
 
-                if (Program._gameManager._enemy._position._x == _position._x && Program._gameManager._enemy._position._y == _position._y)
+                for(int i = 0; i < Program._gameManager._enemies.Count; i++)
                 {
-                    Program._gameManager._enemy._health.TakeDmg();
-                    _position._x -= playerXinput;
-                    _position._y -= playerYinput;
-                    return;
+                    if (Program._gameManager._enemies[i]._position._x == _position._x && Program._gameManager._enemies[i]._position._y == _position._y)
+                        {
+                        Program._gameManager._enemies[i]._health.TakeDmg();
+                            _position._x -= playerXinput;
+                            _position._y -= playerYinput;
+                            Program._gameManager._playerTurn = false;
+                            return;
+                        }
                 }
+
                 if (Program._gameManager._collectables._position._x == _position._x && Program._gameManager._collectables._position._y == _position._y)
                 {
                     _position._x -= playerXinput;
@@ -104,7 +109,7 @@ namespace GameProgramming2_Project1_GabeRyan
 
         
 
-        private void DisplayPlayer()
+        public  void DisplayPlayer()
         {
             Console.SetCursorPosition(_position._x, _position._y);
             Console.ForegroundColor = _pColour;

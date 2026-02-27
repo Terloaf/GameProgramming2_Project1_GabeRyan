@@ -10,11 +10,11 @@ namespace GameProgramming2_Project1_GabeRyan
     internal class Collectables
     {
         public int _collectablesCurrentlyActive = 0;
-        public Position _position;
+        public float _position;
         public int _collectablesCount;
         public Collectables(Position position)
         {
-            _position = position;
+            _position = _position;
         }
 
         public void SpawnCollectable()

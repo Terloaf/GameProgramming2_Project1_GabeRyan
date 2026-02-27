@@ -12,7 +12,7 @@ namespace GameProgramming2_Project1_GabeRyan
 
         public void ColliderSetup()
         {
-            for(int i = 0; i < Program._gameManager._map._map.GetLength(0); i++)
+            for(int i = 1; i < Program._gameManager._map._map.GetLength(0); i++)
             {
                 for (int j = 0; j < Program._gameManager._map._map.GetLength(1); j++)
                 {

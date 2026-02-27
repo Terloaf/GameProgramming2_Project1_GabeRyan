@@ -10,7 +10,7 @@ namespace GameProgramming2_Project1_GabeRyan
     {
 
         public Position _position;
-        public Health _health;
+        public int _health;
         public string _pDisplay;
         public ConsoleColor _pColour;
 

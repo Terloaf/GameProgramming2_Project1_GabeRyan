@@ -38,7 +38,7 @@ namespace GameProgramming2_Project1_GabeRyan
 
             for(int i = 0; i < map._map.Length; i++)
             {
-                for(int j = 0; j < map._map[0].Length; j++)
+                for(int j = 0; j < map._map[1].Length; j++)
                 {
                     if (map.CheckCharInBoarder(map._map[i][j]))
                     {

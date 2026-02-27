@@ -26,7 +26,7 @@ namespace GameProgramming2_Project1_GabeRyan
         public void EnemyMove()
         {
 
-            DisplayEnemy();
+
             int enemyXInput = 0;
             int enemyYInput = 0;
             if (_health._currentHealth <= 0)

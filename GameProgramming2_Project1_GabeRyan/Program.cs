@@ -40,7 +40,7 @@ namespace GameProgramming2_Project1_GabeRyan
             {
                 for(int j = 0; j < map._map[1].Length; j++)
                 {
-                    if (map.CheckCharInBoarder(map._map[i][j]))
+                    if (map.CheckCharInBoarder(map._map[j][i]))
                     {
                         map.SetOccupied(new Position(i, j), true);
                     }

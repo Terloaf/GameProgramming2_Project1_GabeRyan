@@ -24,7 +24,8 @@ namespace GameProgramming2_Project1_GabeRyan
             Console.CursorVisible = false;
             Map map = new Map();
             Enemy enemy = new Enemy(display: "X", colour: ConsoleColor.Red, position: new Position(20, 20), new Health(2));
-            Enemy enemy2 = new Enemy(display: "x", colour: ConsoleColor.Red, position: new Position(24, 18), new Health(1));
+            EnemyBlind enemy2 = new EnemyBlind(display: "x", colour: ConsoleColor.Red, position: new Position(24, 18), new Health(4));
+            EnemyScared enemy3 = new EnemyScared(display: "m", colour: ConsoleColor.Red, position: new Position(22, 18), new Health(1));
             Player player = new Player(display: "O", colour: ConsoleColor.Blue, position: new Position(1, 1), new Health(3));
             Collectables collectables = new Collectables(position: new Position(0, 0));
             List<Enemy> enemies = new List<Enemy>();
@@ -34,7 +35,7 @@ namespace GameProgramming2_Project1_GabeRyan
 
             enemies.Add(enemy);
             enemies.Add(enemy2);
-            
+            enemies.Add(enemy3);
 
 
             map.LoadMap("mapData.txt");
@@ -69,11 +70,9 @@ namespace GameProgramming2_Project1_GabeRyan
                 {
 
                     enemy.EnemyMove();
-                    enemy2.EnemyMove();
-                    for (int j = 0; j < enemies.Count; j++)
-                    {
-                        map.SetOccupied(new Position(enemies[j]._position._y, enemies[j]._position._x), true);
-                    }
+                    enemy2.EnemyBlindMove();
+                    enemy3.EnemyScaredMove();
+
                     _gameManager._playerTurn = true;
                 }
                 
@@ -82,6 +81,7 @@ namespace GameProgramming2_Project1_GabeRyan
                 player.DisplayPlayer();
                 enemy.DisplayEnemy();
                 enemy2.DisplayEnemy();
+                enemy3.DisplayEnemy();
                
             }
 

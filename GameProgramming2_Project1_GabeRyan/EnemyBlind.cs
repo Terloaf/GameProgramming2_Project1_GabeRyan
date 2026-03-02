@@ -6,27 +6,17 @@ using System.Threading.Tasks;
 
 namespace GameProgramming2_Project1_GabeRyan
 {
-    internal class Enemy
+    internal class EnemyBlind : EnemyScared
     {
-        public Position _position;
-        public Health _health;
-        public string _pDisplay;
-        public ConsoleColor _pColour;
-        public int _enemyWait = 0;
-
-        public Enemy(string display, ConsoleColor colour, Position position, Health health)
+        public EnemyBlind(string display, ConsoleColor colour, Position position, Health health) : base(display, colour, position, health)
         {
 
-            _health = health;
-            _pDisplay = display;
-            _pColour = colour;
-            _position = position;
+
         }
 
-        public void EnemyMove()
-        {
 
-           
+        public void EnemyBlindMove()
+        {
             int enemyXInput = 0;
             int enemyYInput = 0;
 
@@ -49,33 +39,17 @@ namespace GameProgramming2_Project1_GabeRyan
             {
                 Console.SetCursorPosition(0, 25);
                 Console.WriteLine("debug");
-               
+
                 _enemyWait += 1;
-                if(_enemyWait >= 2)
+                if (_enemyWait >= 2)
                 {
+                    Random random = new Random();
                     _enemyWait = 0;
-                    
-                    if (Program._gameManager._player._position._x < _position._x)
-                    {
-                        enemyXInput = -1;
 
-                    }
-                    if (Program._gameManager._player._position._y < _position._y)
-                    {
-                        enemyYInput = -1;
+                    enemyXInput += random.Next(-1, 2);
+                    enemyYInput += random.Next(-1, 2);
+                   
 
-                    }
-                    if (Program._gameManager._player._position._x > _position._x)
-                    {
-                        enemyXInput += 1;
-
-                    }
-                    if (Program._gameManager._player._position._y > _position._y)
-                    {
-                        enemyYInput += 1;
-
-                    }
-                    
                     _position._x += enemyXInput;
                     _position._y += enemyYInput;
 
@@ -86,36 +60,25 @@ namespace GameProgramming2_Project1_GabeRyan
                         _position._x -= enemyXInput;
                         _position._y -= enemyYInput;
 
-                       
+
                     }
+
 
 
                     if (Program._gameManager._map.IsSpaceOccupied(_position) == true)
                     {
                         _position._x -= enemyXInput;
                         _position._y -= enemyYInput;
-                      
+
                     }
 
                 }
-                
+
             }
 
-
-            
         }
 
 
-        public void DisplayEnemy()
-        {
-            Console.SetCursorPosition(_position._x, _position._y);
-            Console.ForegroundColor = _pColour;
-            Console.Write(_pDisplay);
-            Console.ResetColor();
-
-            Console.SetCursorPosition(50, 21);
-            Console.Write($"Health {_health._currentHealth}");
-
-        }
     }
 }
+

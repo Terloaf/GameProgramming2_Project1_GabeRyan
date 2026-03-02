@@ -33,8 +33,6 @@ namespace GameProgramming2_Project1_GabeRyan
 
                 _collectablesCurrentlyActive += 1;
 
-
-
             }
 
 

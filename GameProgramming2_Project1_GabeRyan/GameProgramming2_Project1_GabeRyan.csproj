@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Collectables.cs" />
+    <Compile Include="CollectablesHealthPickup.cs" />
     <Compile Include="CollisionSystem.cs" />
     <Compile Include="Enemy.cs" />
     <Compile Include="EnemyBlind.cs" />

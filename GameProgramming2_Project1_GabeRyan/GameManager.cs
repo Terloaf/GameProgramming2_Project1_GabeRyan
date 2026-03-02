@@ -15,16 +15,18 @@ namespace GameProgramming2_Project1_GabeRyan
         public bool _isPlaying;
 
         public Collectables _collectables;
+        public CollectablesHealthPickup _healthPickup;
         public List<Enemy> _enemies;
 
 
-        public GameManager(Map map, Player player, Collectables collectables, bool isPlaying, List<Enemy> enemies)
+        public GameManager(Map map, Player player, Collectables collectables, CollectablesHealthPickup healthPickups, bool isPlaying, List<Enemy> enemies)
         {
             _map = map;
             _player = player;
             _isPlaying = isPlaying;
 
             _collectables = collectables;
+            _healthPickup = healthPickups;
 
             _enemies = enemies;
         }

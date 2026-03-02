@@ -27,9 +27,10 @@ namespace GameProgramming2_Project1_GabeRyan
             EnemyBlind enemy2 = new EnemyBlind(display: "x", colour: ConsoleColor.Red, position: new Position(24, 18), new Health(4));
             EnemyScared enemy3 = new EnemyScared(display: "m", colour: ConsoleColor.Red, position: new Position(22, 18), new Health(1));
             Player player = new Player(display: "O", colour: ConsoleColor.Blue, position: new Position(1, 1), new Health(3));
-            Collectables collectables = new Collectables(position: new Position(0, 0));
+            Collectables collectables = new Collectables(position: new Position(0, 0), "P", ConsoleColor.Yellow);
+            CollectablesHealthPickup healthPickup = new CollectablesHealthPickup(position: new Position(0, 0), "H", ConsoleColor.Green);
             List<Enemy> enemies = new List<Enemy>();
-            _gameManager = new GameManager(map: map, player: player, collectables: collectables ,isPlaying: true, enemies: enemies);
+            _gameManager = new GameManager(map: map, player: player, collectables: collectables, healthPickups: healthPickup, isPlaying: true, enemies: enemies);
 
             
 
@@ -63,7 +64,9 @@ namespace GameProgramming2_Project1_GabeRyan
 
 
                 map.DisplayMap();
+                healthPickup.SpawnCollectableHealth();
                 collectables.SpawnCollectable();
+
                 player.PlayerMove();
 
                 if (_gameManager._playerTurn == false)

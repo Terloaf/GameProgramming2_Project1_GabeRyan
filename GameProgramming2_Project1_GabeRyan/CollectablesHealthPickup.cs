@@ -6,27 +6,16 @@ using System.Threading.Tasks;
 
 namespace GameProgramming2_Project1_GabeRyan
 {
-    
-    internal class Collectables
+    internal class CollectablesHealthPickup : Collectables
     {
-        public int _collectablesCurrentlyActive = 0;
-        public Position _position;
-        public int _collectablesCount;
-        public string _display;
-        public ConsoleColor _colour;
-        public Collectables(Position position, string display, ConsoleColor colour)
+        public CollectablesHealthPickup(Position position, string display, ConsoleColor colour) : base(position, display, colour)
         {
-            _position = position;
-            _display = display;
-            _colour = colour;
+
         }
 
-        public void SpawnCollectable()
+        public void SpawnCollectableHealth()
         {
-            DisplayScore();
-            DisplayCollectable();
-
-
+            DisplayCollectableHealth();
             if (_collectablesCurrentlyActive == 0)
             {
                 Random random = new Random();
@@ -39,31 +28,23 @@ namespace GameProgramming2_Project1_GabeRyan
                 if (Program._gameManager._map._map[_position._y][_position._x] != '`')
                 {
 
-                    SpawnCollectable();
+                    SpawnCollectableHealth();
                 }
 
                 _collectablesCurrentlyActive += 1;
 
 
-                
 
             }
 
-            
-        }
 
-        public void DisplayCollectable()
+        }
+        public void DisplayCollectableHealth()
         {
             Console.SetCursorPosition(_position._x, _position._y);
             Console.ForegroundColor = _colour;
             Console.Write(_display);
             Console.ResetColor();
-        }
-
-        public void DisplayScore()
-        {
-            Console.SetCursorPosition(50, 25);
-            Console.Write($"Score: {_collectablesCount}");
         }
     }
 }

@@ -95,7 +95,17 @@ namespace GameProgramming2_Project1_GabeRyan
         }
 
 
+        public void DisplayScaredEnemy()
+        {
+            Console.SetCursorPosition(_position._x, _position._y);
+            Console.ForegroundColor = _pColour;
+            Console.Write(_pDisplay);
+            Console.ResetColor();
 
+            Console.SetCursorPosition(50, 23);
+            Console.Write($"Scared Enemy Health {_health._currentHealth}");
+
+        }
 
     }
 }

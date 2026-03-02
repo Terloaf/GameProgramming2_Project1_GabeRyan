@@ -78,6 +78,17 @@ namespace GameProgramming2_Project1_GabeRyan
 
         }
 
+        public void DisplayBlindEnemy()
+        {
+            Console.SetCursorPosition(_position._x, _position._y);
+            Console.ForegroundColor = _pColour;
+            Console.Write(_pDisplay);
+            Console.ResetColor();
+
+            Console.SetCursorPosition(50, 22);
+            Console.Write($"Blind Enemy Health {_health._currentHealth}");
+
+        }
 
     }
 }

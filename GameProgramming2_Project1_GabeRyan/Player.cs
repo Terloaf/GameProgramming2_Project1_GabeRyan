@@ -117,7 +117,7 @@ namespace GameProgramming2_Project1_GabeRyan
 
         
 
-        public  void DisplayPlayer()
+        public void DisplayPlayer()
         {
             Console.SetCursorPosition(_position._x, _position._y);
             Console.ForegroundColor = _pColour;
@@ -125,7 +125,7 @@ namespace GameProgramming2_Project1_GabeRyan
             Console.ResetColor();
 
             Console.SetCursorPosition(50, 20);
-            Console.Write($"Health {_health._currentHealth}");
+            Console.Write($"Player Health {_health._currentHealth}");
 
         }
 

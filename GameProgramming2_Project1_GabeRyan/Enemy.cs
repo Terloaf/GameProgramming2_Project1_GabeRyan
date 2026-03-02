@@ -114,7 +114,7 @@ namespace GameProgramming2_Project1_GabeRyan
             Console.ResetColor();
 
             Console.SetCursorPosition(50, 21);
-            Console.Write($"Health {_health._currentHealth}");
+            Console.Write($"Enemy Health {_health._currentHealth}");
 
         }
     }

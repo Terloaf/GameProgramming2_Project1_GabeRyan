@@ -83,8 +83,8 @@ namespace GameProgramming2_Project1_GabeRyan
 
                 player.DisplayPlayer();
                 enemy.DisplayEnemy();
-                enemy2.DisplayEnemy();
-                enemy3.DisplayEnemy();
+                enemy2.DisplayBlindEnemy();
+                enemy3.DisplayScaredEnemy();
                
             }
 

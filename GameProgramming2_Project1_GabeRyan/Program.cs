@@ -24,8 +24,9 @@ namespace GameProgramming2_Project1_GabeRyan
             Console.CursorVisible = false;
             Map map = new Map();
             Enemy enemy = new Enemy(display: "X", colour: ConsoleColor.Red, position: new Position(20, 20), new Health(2));
-            EnemyBlind enemy2 = new EnemyBlind(display: "x", colour: ConsoleColor.Red, position: new Position(24, 18), new Health(4));
-            EnemyScared enemy3 = new EnemyScared(display: "m", colour: ConsoleColor.Red, position: new Position(22, 18), new Health(1));
+            EnemyBlind enemy2 = new EnemyBlind(display: "x", colour: ConsoleColor.Red, position: new Position(24, 5), new Health(4));
+            EnemyBlind enemy3 = new EnemyBlind(display: "x", colour: ConsoleColor.Red, position: new Position(37, 10), new Health(4));
+            EnemyScared enemy4 = new EnemyScared(display: "m", colour: ConsoleColor.Red, position: new Position(22, 18), new Health(1));
             Player player = new Player(display: "O", colour: ConsoleColor.Blue, position: new Position(1, 1), new Health(3));
             Collectables collectables = new Collectables(position: new Position(0, 0), "P", ConsoleColor.Yellow);
             CollectablesHealthPickup healthPickup = new CollectablesHealthPickup(position: new Position(0, 0), "H", ConsoleColor.Green);
@@ -38,6 +39,7 @@ namespace GameProgramming2_Project1_GabeRyan
             enemies.Add(enemy);
             enemies.Add(enemy2);
             enemies.Add(enemy3);
+            enemies.Add(enemy4);
 
 
             map.LoadMap("mapData.txt");
@@ -76,7 +78,8 @@ namespace GameProgramming2_Project1_GabeRyan
 
                     enemy.EnemyMove();
                     enemy2.EnemyBlindMove();
-                    enemy3.EnemyScaredMove();
+                    enemy3.EnemyBlindMove();
+                    enemy4.EnemyScaredMove();
 
                     _gameManager._playerTurn = true;
                 }
@@ -86,7 +89,8 @@ namespace GameProgramming2_Project1_GabeRyan
                 player.DisplayPlayer();
                 enemy.DisplayEnemy();
                 enemy2.DisplayBlindEnemy();
-                enemy3.DisplayScaredEnemy();
+                enemy3.DisplayBlindEnemy();
+                enemy4.DisplayScaredEnemy();
                
             }
 

@@ -16,10 +16,11 @@ namespace GameProgramming2_Project1_GabeRyan
 
         public Collectables _collectables;
         public CollectablesHealthPickup _healthPickup;
+        public TimeStop _timeStop;
         public List<Enemy> _enemies;
 
 
-        public GameManager(Map map, Player player, Collectables collectables, CollectablesHealthPickup healthPickups, bool isPlaying, List<Enemy> enemies)
+        public GameManager(Map map, Player player, Collectables collectables, CollectablesHealthPickup healthPickups, TimeStop timestop, bool isPlaying, List<Enemy> enemies)
         {
             _map = map;
             _player = player;
@@ -27,6 +28,7 @@ namespace GameProgramming2_Project1_GabeRyan
 
             _collectables = collectables;
             _healthPickup = healthPickups;
+            _timeStop = timestop;
 
             _enemies = enemies;
         }

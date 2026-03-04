@@ -29,8 +29,9 @@ namespace GameProgramming2_Project1_GabeRyan
             Player player = new Player(display: "O", colour: ConsoleColor.Blue, position: new Position(1, 1), new Health(3));
             Collectables collectables = new Collectables(position: new Position(0, 0), "P", ConsoleColor.Yellow);
             CollectablesHealthPickup healthPickup = new CollectablesHealthPickup(position: new Position(0, 0), "H", ConsoleColor.Green);
+            TimeStop timeStop = new TimeStop(position: new Position(0, 0), "T", ConsoleColor.Gray);
             List<Enemy> enemies = new List<Enemy>();
-            _gameManager = new GameManager(map: map, player: player, collectables: collectables, healthPickups: healthPickup, isPlaying: true, enemies: enemies);
+            _gameManager = new GameManager(map: map, player: player, collectables: collectables, healthPickups: healthPickup, timestop: timeStop, isPlaying: true, enemies: enemies);
 
             
 
@@ -65,6 +66,7 @@ namespace GameProgramming2_Project1_GabeRyan
 
                 map.DisplayMap();
                 healthPickup.SpawnCollectableHealth();
+                timeStop.SpawnTimeStop();
                 collectables.SpawnCollectable();
 
                 player.PlayerMove();

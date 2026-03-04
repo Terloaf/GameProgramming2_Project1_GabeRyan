@@ -76,7 +76,20 @@ namespace GameProgramming2_Project1_GabeRyan
                     _health.Heal();
                 }
 
-                    if (playerXinput == -1 && _position._x == -1)
+                if (Program._gameManager._timeStop._position._x == _position._x && Program._gameManager._timeStop._position._y == _position._y)
+                {
+                    _position._x -= playerXinput;
+                    _position._y -= playerYinput;
+                    Program._gameManager._timeStop._collectablesCurrentlyActive = 0;
+
+                    for(int i = 0; i < Program._gameManager._enemies.Count; i++)
+                    {
+                        Program._gameManager._enemies[i]._enemyWait = -20;
+                    }
+                    
+                }
+
+                if (playerXinput == -1 && _position._x == -1)
                 {
                     _position._x += 1;
                     return;

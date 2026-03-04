@@ -18,14 +18,20 @@ namespace GameProgramming2_Project1_GabeRyan
 
         int _mapOffset = -1;
 
-        
 
+
+
+        
+        
 
         public void LoadMap(string mapPath)
         {
             _map = File.ReadAllLines(mapPath);
 
             _occupiedSpaces = new bool[_map.Length, _map[0].Length];
+
+
+
         }
 
         public bool IsSpaceOccupied(Position position)

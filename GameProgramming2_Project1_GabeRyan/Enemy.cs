@@ -23,7 +23,7 @@ namespace GameProgramming2_Project1_GabeRyan
             _position = position;
         }
 
-        public void EnemyMove()
+        public virtual void EnemyMove()
         {
 
            
@@ -106,7 +106,7 @@ namespace GameProgramming2_Project1_GabeRyan
         }
 
 
-        public void DisplayEnemy()
+        public virtual void DisplayEnemy()
         {
             Console.SetCursorPosition(_position._x, _position._y);
             Console.ForegroundColor = _pColour;

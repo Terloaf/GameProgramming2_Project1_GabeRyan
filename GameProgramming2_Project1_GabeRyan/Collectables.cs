@@ -21,7 +21,7 @@ namespace GameProgramming2_Project1_GabeRyan
             _colour = colour;
         }
 
-        public void SpawnCollectable()
+        public virtual void SpawnCollectable()
         {
             DisplayScore();
             DisplayCollectable();
@@ -64,6 +64,17 @@ namespace GameProgramming2_Project1_GabeRyan
         {
             Console.SetCursorPosition(50, 25);
             Console.Write($"Score: {_collectablesCount}");
+        }
+
+        public virtual void Collect()
+        {
+            if (Program._gameManager._player._position._x == _position._x && Program._gameManager._player._position._y == _position._y)
+            {
+                Program._gameManager._player._position._x -= Program._gameManager._player._playerXInput;
+                Program._gameManager._player._position._y -= Program._gameManager._player._playerYInput;
+                _collectablesCount += 1;
+                _collectablesCurrentlyActive = 0;
+            }
         }
     }
 }

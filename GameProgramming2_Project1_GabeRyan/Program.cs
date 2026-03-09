@@ -32,7 +32,8 @@ namespace GameProgramming2_Project1_GabeRyan
             CollectablesHealthPickup healthPickup = new CollectablesHealthPickup(position: new Position(0, 0), "H", ConsoleColor.Green);
             TimeStop timeStop = new TimeStop(position: new Position(0, 0), "T", ConsoleColor.Gray);
             List<Enemy> enemies = new List<Enemy>();
-            _gameManager = new GameManager(map: map, player: player, collectables: collectables, healthPickups: healthPickup, timestop: timeStop, isPlaying: true, enemies: enemies);
+            List<Collectables> collectableList = new List<Collectables>();
+            _gameManager = new GameManager(map: map, player: player, isPlaying: true, enemies: enemies, collectableList: collectableList);
 
             
 
@@ -40,6 +41,10 @@ namespace GameProgramming2_Project1_GabeRyan
             enemies.Add(enemy2);
             enemies.Add(enemy3);
             enemies.Add(enemy4);
+
+            collectableList.Add(collectables);
+            collectableList.Add(healthPickup);
+            collectableList.Add(timeStop);
 
 
             map.LoadMap("mapData.txt");
@@ -67,30 +72,36 @@ namespace GameProgramming2_Project1_GabeRyan
 
 
                 map.DisplayMap();
-                healthPickup.SpawnCollectableHealth();
-                timeStop.SpawnTimeStop();
-                collectables.SpawnCollectable();
+
+                for(int i = 0; i < collectableList.Count; i++)
+                {
+                    collectableList[i].SpawnCollectable();
+                    collectableList[i].Collect();
+                }
 
                 player.PlayerMove();
-
+                
                 if (_gameManager._playerTurn == false)
                 {
 
-                    enemy.EnemyMove();
-                    enemy2.EnemyBlindMove();
-                    enemy3.EnemyBlindMove();
-                    enemy4.EnemyScaredMove();
 
+                    for(int j = 0; j < enemies.Count; j++)
+                    {
+                        enemies[j].EnemyMove();
+                    }
+                 
                     _gameManager._playerTurn = true;
                 }
                 
                 player.GameOverCheck();
 
                 player.DisplayPlayer();
-                enemy.DisplayEnemy();
-                enemy2.DisplayBlindEnemy();
-                enemy3.DisplayBlindEnemy();
-                enemy4.DisplayScaredEnemy();
+
+                for(int k = 0; k < enemies.Count; k++)
+                {
+                    enemies[k].DisplayEnemy();
+                }
+
                
             }
 

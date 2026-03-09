@@ -13,6 +13,8 @@ namespace GameProgramming2_Project1_GabeRyan
         public Health _health;
         public string _pDisplay;
         public ConsoleColor _pColour;
+        public int _playerXInput;
+        public int _playerYInput;
 
         public Player(string display, ConsoleColor colour, Position position, Health health)
         {
@@ -47,6 +49,8 @@ namespace GameProgramming2_Project1_GabeRyan
                 
                 _position._x += playerXinput;
                 _position._y += playerYinput;
+                _playerXInput = playerXinput;
+                _playerYInput = playerYinput;
 
                 for(int i = 0; i < Program._gameManager._enemies.Count; i++)
                 {
@@ -60,34 +64,7 @@ namespace GameProgramming2_Project1_GabeRyan
                         }
                 }
 
-                if (Program._gameManager._collectables._position._x == _position._x && Program._gameManager._collectables._position._y == _position._y)
-                {
-                    _position._x -= playerXinput;
-                    _position._y -= playerYinput;
-                    Program._gameManager._collectables._collectablesCount += 1;
-                    Program._gameManager._collectables._collectablesCurrentlyActive = 0;
-                }
-
-                if(Program._gameManager._healthPickup._position._x == _position._x && Program._gameManager._healthPickup._position._y == _position._y)
-                {
-                    _position._x -= playerXinput;
-                    _position._y -= playerYinput;
-                    Program._gameManager._healthPickup._collectablesCurrentlyActive = 0;
-                    _health.Heal();
-                }
-
-                if (Program._gameManager._timeStop._position._x == _position._x && Program._gameManager._timeStop._position._y == _position._y)
-                {
-                    _position._x -= playerXinput;
-                    _position._y -= playerYinput;
-                    Program._gameManager._timeStop._collectablesCurrentlyActive = 0;
-
-                    for(int i = 0; i < Program._gameManager._enemies.Count; i++)
-                    {
-                        Program._gameManager._enemies[i]._enemyWait = -20;
-                    }
-                    
-                }
+               
 
                 if (playerXinput == -1 && _position._x == -1)
                 {
@@ -153,8 +130,6 @@ namespace GameProgramming2_Project1_GabeRyan
                 Environment.Exit(0);
             }
         }
-
-        
 
     }
 }

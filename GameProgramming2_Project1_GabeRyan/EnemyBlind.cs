@@ -15,7 +15,7 @@ namespace GameProgramming2_Project1_GabeRyan
         }
 
 
-        public void EnemyBlindMove()
+        public override void EnemyMove()
         {
             int enemyXInput = 0;
             int enemyYInput = 0;
@@ -78,7 +78,7 @@ namespace GameProgramming2_Project1_GabeRyan
 
         }
 
-        public void DisplayBlindEnemy()
+        public override void DisplayEnemy()
         {
             Console.SetCursorPosition(_position._x, _position._y);
             Console.ForegroundColor = _pColour;

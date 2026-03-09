@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -15,10 +16,10 @@ namespace GameProgramming2_Project1_GabeRyan
         public bool _isPlaying;
         public List<Enemy> _enemies;
         public List<Collectables> _collectableList;
+        public Random _random;
 
-        Random random = new Random();
 
-        public GameManager(Map map, Player player, bool isPlaying, List<Enemy> enemies, List<Collectables> collectableList)
+        public GameManager(Map map, Player player, bool isPlaying, List<Enemy> enemies, List<Collectables> collectableList, Random random)
         {
             _map = map;
             _player = player;
@@ -27,6 +28,7 @@ namespace GameProgramming2_Project1_GabeRyan
 
             _enemies = enemies;
             _collectableList = collectableList;
+            _random = random;
         }
 
         

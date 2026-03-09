@@ -31,9 +31,10 @@ namespace GameProgramming2_Project1_GabeRyan
             Collectables collectables = new Collectables(position: new Position(0, 0), "P", ConsoleColor.Yellow);
             CollectablesHealthPickup healthPickup = new CollectablesHealthPickup(position: new Position(0, 0), "H", ConsoleColor.Green);
             TimeStop timeStop = new TimeStop(position: new Position(0, 0), "T", ConsoleColor.Gray);
+            Random random = new Random();
             List<Enemy> enemies = new List<Enemy>();
             List<Collectables> collectableList = new List<Collectables>();
-            _gameManager = new GameManager(map: map, player: player, isPlaying: true, enemies: enemies, collectableList: collectableList);
+            _gameManager = new GameManager(map: map, player: player, isPlaying: true, enemies: enemies, collectableList: collectableList, random: random);
 
             
 

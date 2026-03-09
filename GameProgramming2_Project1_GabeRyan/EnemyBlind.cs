@@ -43,11 +43,10 @@ namespace GameProgramming2_Project1_GabeRyan
                 _enemyWait += 1;
                 if (_enemyWait >= 2)
                 {
-                    Random random = new Random();
                     _enemyWait = 0;
 
-                    enemyXInput += random.Next(-1, 2);
-                    enemyYInput += random.Next(-1, 2);
+                    enemyXInput += Program._gameManager._random.Next(-1, 2);
+                    enemyYInput += Program._gameManager._random.Next(-1, 2);
                    
 
                     _position._x += enemyXInput;

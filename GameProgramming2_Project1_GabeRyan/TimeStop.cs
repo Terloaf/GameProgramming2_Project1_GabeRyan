@@ -23,10 +23,10 @@ namespace GameProgramming2_Project1_GabeRyan
                 if (_collectablesCurrentlyActive == 0)
                 {
                    
-                    Random random = new Random();
 
-                    _position._x = random.Next(1, Program._gameManager._map._map[0].Length - 1);
-                    _position._y = random.Next(1, Program._gameManager._map._map.Length - 1);
+
+                    _position._x = Program._gameManager._random.Next(1, Program._gameManager._map._map[0].Length - 1);
+                    _position._y = Program._gameManager._random.Next(1, Program._gameManager._map._map.Length - 1);
 
 
 

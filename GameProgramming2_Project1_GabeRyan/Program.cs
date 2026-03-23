@@ -23,10 +23,6 @@ namespace GameProgramming2_Project1_GabeRyan
         {
             Console.CursorVisible = false;
             Map map = new Map();
-            Enemy enemy = new Enemy(display: "X", colour: ConsoleColor.Red, position: new Position(20, 20), new Health(2));
-            EnemyBlind enemy2 = new EnemyBlind(display: "x", colour: ConsoleColor.Red, position: new Position(24, 5), new Health(4));
-            EnemyBlind enemy3 = new EnemyBlind(display: "x", colour: ConsoleColor.Red, position: new Position(37, 10), new Health(4));
-            EnemyScared enemy4 = new EnemyScared(display: "m", colour: ConsoleColor.Red, position: new Position(22, 18), new Health(1));
             Player player = new Player(display: "O", colour: ConsoleColor.Blue, position: new Position(1, 1), new Health(3));
             Collectables collectables = new Collectables(position: new Position(0, 0), "P", ConsoleColor.Yellow);
             CollectablesHealthPickup healthPickup = new CollectablesHealthPickup(position: new Position(0, 0), "H", ConsoleColor.Green);

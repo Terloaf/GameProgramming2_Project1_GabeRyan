@@ -51,15 +51,29 @@ namespace GameProgramming2_Project1_GabeRyan
             string[] enemyStringArray;
             enemyStringArray = enemyString.Split(',');
 
-           
+            
 
-            string enemyDisplay = enemyStringArray[0];
-            ConsoleColor.TryParse(enemyStringArray[1], out ConsoleColor enemyColour);
-            Position enemyPos = new Position(int.Parse(enemyStringArray[2]), int.Parse(enemyStringArray[3]));
-            Health enemyHealth = new Health(int.Parse(enemyStringArray[4]));
+            string enemyDisplay = enemyStringArray[1];
+            ConsoleColor.TryParse(enemyStringArray[2], out ConsoleColor enemyColour);
+            Position enemyPos = new Position(int.Parse(enemyStringArray[3]), int.Parse(enemyStringArray[4]));
+            Health enemyHealth = new Health(int.Parse(enemyStringArray[5]));
 
-            Enemy e = new Enemy(enemyDisplay, enemyColour, enemyPos, enemyHealth);
-            _enemies.Add(e);
+            if (enemyStringArray[0] == "Enemy")
+            {
+                Enemy e = new Enemy(enemyDisplay, enemyColour, enemyPos, enemyHealth);
+                _enemies.Add(e);
+            }
+            if (enemyStringArray[0] == "EnemyBlind")
+            {
+                EnemyBlind e = new EnemyBlind(enemyDisplay, enemyColour, enemyPos, enemyHealth);
+                _enemies.Add(e);
+            }
+            if (enemyStringArray[0] == "EnemyScared")
+            {
+                 EnemyScared e = new EnemyScared(enemyDisplay, enemyColour, enemyPos, enemyHealth);
+                _enemies.Add(e);
+            }
+            
 
             Enemy d = new Enemy("E", ConsoleColor.Red, new Position(0, 0), new Health(100));
             // add to list 

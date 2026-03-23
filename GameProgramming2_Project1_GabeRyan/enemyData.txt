@@ -1,1 +1,4 @@
-x,Red,10,10,3
+Enemy,X,Red,20,20,3
+EnemyBlind,x,Red,24,5,3
+EnemyBlind,x,Red,37,10,3
+EnemyScared,m,Red,22,18,3

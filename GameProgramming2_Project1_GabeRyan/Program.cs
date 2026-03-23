@@ -36,12 +36,13 @@ namespace GameProgramming2_Project1_GabeRyan
             List<Collectables> collectableList = new List<Collectables>();
             _gameManager = new GameManager(map: map, player: player, isPlaying: true, enemies: enemies, collectableList: collectableList, random: random);
 
-            
+            _gameManager.FileEnemies("enemyData.txt");
 
-            enemies.Add(enemy);
-            enemies.Add(enemy2);
-            enemies.Add(enemy3);
-            enemies.Add(enemy4);
+
+            //enemies.Add(enemy);
+            //enemies.Add(enemy2);
+            //enemies.Add(enemy3);
+            //enemies.Add(enemy4);
 
             collectableList.Add(collectables);
             collectableList.Add(healthPickup);

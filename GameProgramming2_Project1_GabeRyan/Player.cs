@@ -64,7 +64,7 @@ namespace GameProgramming2_Project1_GabeRyan
                         }
                 }
 
-               
+
 
                 if (playerXinput == -1 && _position._x == -1)
                 {
@@ -88,7 +88,7 @@ namespace GameProgramming2_Project1_GabeRyan
                     _position._y -= 1;
                     return;
                 }
-                
+
 
                 if (Program._gameManager._map.IsSpaceOccupied(_position) == true)
                 {

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -47,6 +48,8 @@ namespace GameProgramming2_Project1_GabeRyan
 
             map.LoadMap("mapData.txt");
 
+
+
             for(int i = 0; i < map._map.Length; i++)
             {
                 for(int j = 0; j < map._map[0].Length; j++)
@@ -55,7 +58,7 @@ namespace GameProgramming2_Project1_GabeRyan
                     {
                         map.SetOccupied(new Position(i, j), true);
                     }
-                    
+
                 }
                 
             }

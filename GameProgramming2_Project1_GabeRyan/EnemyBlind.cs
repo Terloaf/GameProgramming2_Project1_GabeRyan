@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GameProgramming2_Project1_GabeRyan
 {
-    internal class EnemyBlind : EnemyScared
+    internal class EnemyBlind : Enemy
     {
         public EnemyBlind(string display, ConsoleColor colour, Position position, Health health) : base(display, colour, position, health)
         {

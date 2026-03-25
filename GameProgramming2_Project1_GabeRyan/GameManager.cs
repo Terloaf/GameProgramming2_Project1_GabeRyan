@@ -75,9 +75,6 @@ namespace GameProgramming2_Project1_GabeRyan
             }
             
 
-            Enemy d = new Enemy("E", ConsoleColor.Red, new Position(0, 0), new Health(100));
-            // add to list 
-
         }
         
         

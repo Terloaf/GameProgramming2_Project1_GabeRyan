@@ -24,7 +24,7 @@ namespace GameProgramming2_Project1_GabeRyan
         public virtual void SpawnCollectable()
         {
             DisplayScore();
-            DisplayCollectable();
+            
 
 
             if (_collectablesCurrentlyActive == 0)
@@ -52,7 +52,7 @@ namespace GameProgramming2_Project1_GabeRyan
             
         }
 
-        public void DisplayCollectable()
+        public virtual void DisplayCollectable()
         {
             Console.SetCursorPosition(_position._x, _position._y);
             Console.ForegroundColor = _colour;

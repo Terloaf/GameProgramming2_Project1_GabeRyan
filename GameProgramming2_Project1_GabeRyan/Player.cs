@@ -98,6 +98,7 @@ namespace GameProgramming2_Project1_GabeRyan
 
                 
                 Program._gameManager._playerTurn = false;
+                Program._gameManager._screenIsDirty = true;
                 
             }
             
@@ -119,17 +120,6 @@ namespace GameProgramming2_Project1_GabeRyan
 
         }
 
-        public void GameOverCheck()
-        {
-            if(_health._currentHealth <= 0)
-            {
-                Program._gameManager._isPlaying = false;
-                Console.Clear();
-                Console.WriteLine("You Lose");
-                Console.ReadKey();
-                Environment.Exit(0);
-            }
-        }
 
     }
 }

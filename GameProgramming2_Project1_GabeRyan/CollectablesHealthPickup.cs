@@ -15,7 +15,6 @@ namespace GameProgramming2_Project1_GabeRyan
 
         public override void SpawnCollectable()
         {
-            DisplayCollectableHealth();
             if (_collectablesCurrentlyActive == 0)
             {
 
@@ -37,7 +36,7 @@ namespace GameProgramming2_Project1_GabeRyan
 
 
         }
-        public void DisplayCollectableHealth()
+        public override void DisplayCollectable()
         {
             Console.SetCursorPosition(_position._x, _position._y);
             Console.ForegroundColor = _colour;

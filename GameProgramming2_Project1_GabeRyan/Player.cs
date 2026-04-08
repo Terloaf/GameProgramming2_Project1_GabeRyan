@@ -46,56 +46,47 @@ namespace GameProgramming2_Project1_GabeRyan
                 if (Input.Key == ConsoleKey.A) playerXinput -= 1;
 
 
-                
-                _position._x += playerXinput;
-                _position._y += playerYinput;
+                int _desiredX = _position._x + playerXinput;
+                int _desiredY = _position._y + playerYinput;
+                //_position._x += playerXinput;
+                //_position._y += playerYinput;
                 _playerXInput = playerXinput;
                 _playerYInput = playerYinput;
 
                 for(int i = 0; i < Program._gameManager._enemies.Count; i++)
                 {
-                    if (Program._gameManager._enemies[i]._position._x == _position._x && Program._gameManager._enemies[i]._position._y == _position._y)
-                        {
+                    if (Program._gameManager._enemies[i]._position._x == _desiredX && Program._gameManager._enemies[i]._position._y == _desiredY)
+                    {
                         Program._gameManager._enemies[i]._health.TakeDmg();
-                            _position._x -= playerXinput;
-                            _position._y -= playerYinput;
-                            Program._gameManager._playerTurn = false;
-                            return;
-                        }
+                        Program._gameManager._playerTurn = false;
+                        return;
+                    }
                 }
 
-
-
-                if (playerXinput == -1 && _position._x == -1)
+                if(_desiredX == 0)
                 {
-                    _position._x += 1;
+                    return;
+                }
+                if(_desiredX == Program._gameManager._map._map[0].Length)
+                {
+                    return;
+                }
+                if(_desiredY == Program._gameManager._map._map.Length)
+                {
+                    return;
+                }
+                if(_desiredY == 0)
+                {
                     return;
                 }
 
-                if (playerXinput == 1 && _position._x == Program._gameManager._map._map[0].Length)
+                if (Program._gameManager._map.IsSpaceOccupied(new Position(_desiredX, _desiredY)) == true)
                 {
-                    _position._x -= 1;
                     return;
                 }
 
-                if (playerYinput == -1 && _position._y == -1)
-                {
-                    _position._y += 1;
-                    return;
-                }
-                if (playerYinput == 1 && _position._y == Program._gameManager._map._map.Length)
-                {
-                    _position._y -= 1;
-                    return;
-                }
-
-
-                if (Program._gameManager._map.IsSpaceOccupied(_position) == true)
-                {
-                    _position._x -= playerXinput;
-                    _position._y -= playerYinput;
-                }
-
+                _position._x = _desiredX;
+                _position._y = _desiredY;
                 
                 Program._gameManager._playerTurn = false;
                 Program._gameManager._screenIsDirty = true;

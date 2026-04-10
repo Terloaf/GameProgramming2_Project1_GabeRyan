@@ -163,6 +163,7 @@ namespace GameProgramming2_Project1_GabeRyan
                     if (_map.CheckCharInBoarder(_map._map[i][j]))
                     {
                         _map.SetOccupied(new Position(i, j), true);
+                        
                     }
 
                 }

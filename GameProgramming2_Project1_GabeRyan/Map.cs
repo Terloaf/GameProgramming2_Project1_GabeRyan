@@ -17,7 +17,6 @@ namespace GameProgramming2_Project1_GabeRyan
         public bool[,] _occupiedSpaces;
 
 
-        public List<Position> _characterLastPos; 
 
         
         

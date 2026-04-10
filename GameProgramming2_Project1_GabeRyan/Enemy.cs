@@ -113,7 +113,7 @@ namespace GameProgramming2_Project1_GabeRyan
             Console.Write(_pDisplay);
             Console.ResetColor();
 
-            Console.SetCursorPosition(80, 21);
+            Console.SetCursorPosition(50, 21);
             Console.Write($"Enemy Health {_health._currentHealth}");
 
         }

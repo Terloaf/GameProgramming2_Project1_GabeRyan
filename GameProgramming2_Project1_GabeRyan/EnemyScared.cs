@@ -20,71 +20,71 @@ namespace GameProgramming2_Project1_GabeRyan
             int enemyXInput = 0;
             int enemyYInput = 0;
 
-            if (_health._currentHealth <= 0)
+            if (Health.CurrentHealth <= 0)
             {
                 Random random = new Random();
 
-                _position._x = random.Next(1, Program._gameManager._map._map[0].Length - 1);
-                _position._y = random.Next(1, Program._gameManager._map._map.Length - 1);
+                Position.X = random.Next(1, Program.GameManager.Map._map[0].Length - 1);
+                Position.Y = random.Next(1, Program.GameManager.Map._map.Length - 1);
 
-                if (Program._gameManager._map._map[_position._y][_position._x] != '`')
+                if (Program.GameManager.Map._map[Position.Y][Position.X] != '`')
                 {
                     EnemyMove();
                 }
 
-                _health.RespawnHealth();
+                Health.RespawnHealth();
                 return;
             }
-            if (Program._gameManager._playerTurn == false)
+            if (Program.GameManager.PlayerTurn == false)
             {
                 Console.SetCursorPosition(0, 25);
                 Console.WriteLine("debug");
 
-                _enemyWait += 1;
-                if (_enemyWait >= 2)
+                EnemyWait += 1;
+                if (EnemyWait >= 2)
                 {
-                    _enemyWait = 0;
+                    EnemyWait = 0;
 
-                    if (Program._gameManager._player._position._x < _position._x)
+                    if (Program.GameManager.Player.Position.X < Position.X)
                     {
                         enemyXInput += 1;
 
                     }
-                    if (Program._gameManager._player._position._y < _position._y)
+                    if (Program.GameManager.Player.Position.Y < Position.Y)
                     {
                         enemyYInput += 1;
 
                     }
-                    if (Program._gameManager._player._position._x > _position._x)
+                    if (Program.GameManager.Player.Position.X > Position.X)
                     {
                         enemyXInput -= 1;
 
                     }
-                    if (Program._gameManager._player._position._y > _position._y)
+                    if (Program.GameManager.Player.Position.Y > Position.Y)
                     {
                         enemyYInput -= 1;
 
                     }
 
-                    _position._x += enemyXInput;
-                    _position._y += enemyYInput;
+                    Position.X += enemyXInput;
+                    Position.Y += enemyYInput;
 
 
-                    if (Program._gameManager._player._position._x == _position._x && Program._gameManager._player._position._y == _position._y)
+                    if (Program.GameManager.Player.Position.X == Position.X && Program.GameManager.Player.Position.Y == Position.Y)
                     {
-                        Program._gameManager._player._health.TakeDmg();
-                        _position._x -= enemyXInput;
-                        _position._y -= enemyYInput;
+                        Program.GameManager.Player.Health.TakeDmg();
+                        Position.X -= enemyXInput;
+                        Position.Y -= enemyYInput;
 
 
                     }
 
 
 
-                    if (Program._gameManager._map.IsSpaceOccupied(_position) == true)
+                    if (Program.GameManager.Map.IsSpaceOccupied(Position) == true)
                     {
-                        _position._x -= enemyXInput;
-                        _position._y -= enemyYInput;
+                        Position.X -= enemyXInput;
+                        Position.Y -= enemyYInput;
 
                     }
 
@@ -97,13 +97,10 @@ namespace GameProgramming2_Project1_GabeRyan
 
         public override void DisplayEnemy()
         {
-            Console.SetCursorPosition(_position._x, _position._y);
-            Console.ForegroundColor = _pColour;
-            Console.Write(_pDisplay);
+            Console.SetCursorPosition(Position.X, Position.Y);
+            Console.ForegroundColor = PColour;
+            Console.Write(PDisplay);
             Console.ResetColor();
-
-            Console.SetCursorPosition(50, 23);
-            Console.Write($"Scared Enemy Health {_health._currentHealth}");
 
         }
 

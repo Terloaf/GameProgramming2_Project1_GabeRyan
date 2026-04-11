@@ -14,7 +14,7 @@ namespace GameProgramming2_Project1_GabeRyan
     // Make a list for turn order some how and add 3 instances of an enemy.
     internal class Program
     {
-        public static GameManager _gameManager;
+        public static GameManager GameManager;
 
 
 
@@ -22,9 +22,9 @@ namespace GameProgramming2_Project1_GabeRyan
 
         static void Main(string[] args)
         {
-            _gameManager = new GameManager();
+            GameManager = new GameManager();
 
-            _gameManager.PlayGame();
+            GameManager.PlayGame();
 
             Console.WriteLine("Play game has ended");
             Console.ReadKey();

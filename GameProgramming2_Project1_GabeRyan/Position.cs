@@ -8,12 +8,12 @@ namespace GameProgramming2_Project1_GabeRyan
 {
     internal struct Position
     {
-        public int _x;
-        public int _y;
+        public int X;
+        public int Y;
         public Position(int x, int y)
         {
-            _x = x;
-            _y = y;
+            X = x;
+            Y = y;
         }
         
     }

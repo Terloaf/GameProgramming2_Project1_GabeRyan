@@ -14,7 +14,7 @@ EnemyBlind,x,Red,4,13,3
 EnemyScared,m,Red,2,4,3
 EnemyScared,m,Red,3,4,3
 EnemyBlind,x,Red,40,5,3
-EnemyBlind,x,Red,42,10,3
+EnemyBlind,x,Red,42,9,3
 EnemyScared,m,Red,40,19,3
 EnemyBlind,x,Red,26,3,3
 EnemyBlind,x,Red,28,13,3
@@ -22,5 +22,5 @@ EnemyBlind,x,Red,19,13,3
 EnemyBlind,x,Red,30,13,3
 EnemyBlind,x,Red,20,21,3
 EnemyBlind,x,Red,20,19,3
-EnemyBlind,x,Red,21,20,3
-EnemyBlind,x,Red,22,20,3
+EnemyBlind,x,Red,21,21,3
+EnemyBlind,x,Red,22,21,3

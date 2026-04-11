@@ -8,36 +8,36 @@ namespace GameProgramming2_Project1_GabeRyan
 {
     internal struct Health
     {
-        public int _maxHealth;
-        public int _currentHealth;
+        public int MaxHealth;
+        public int CurrentHealth;
         public Health(int maxHealth)
         {
-            _maxHealth = maxHealth;
-            _currentHealth = maxHealth;
+            MaxHealth = maxHealth;
+            CurrentHealth = maxHealth;
 
         }
         public void TakeDmg()
         {
-            _currentHealth -= 1;
-            if(_currentHealth <= 0)
+            CurrentHealth -= 1;
+            if(CurrentHealth <= 0)
             {
-                _currentHealth = 0;
+                CurrentHealth = 0;
             }
 
         }
 
         public void Heal()
         {
-            _currentHealth += 1;
-            if(_currentHealth >= _maxHealth)
+            CurrentHealth += 1;
+            if(CurrentHealth >= MaxHealth)
             {
-                _currentHealth = _maxHealth;
+                CurrentHealth = MaxHealth;
             }
         }
 
        public void RespawnHealth()
         {
-            _currentHealth = _maxHealth;
+            CurrentHealth = MaxHealth;
         }
            
 

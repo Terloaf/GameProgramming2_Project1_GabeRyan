@@ -8,51 +8,34 @@ namespace GameProgramming2_Project1_GabeRyan
 {
     internal class CollectablesHealthPickup : Collectables
     {
-        public CollectablesHealthPickup(Position position, string display, ConsoleColor colour) : base(position, display, colour)
+        public CollectablesHealthPickup(string display, ConsoleColor colour, Position position ) : base(display,colour,position)
         {
 
         }
 
         public override void SpawnCollectable()
         {
-            if (_collectablesCurrentlyActive == 0)
-            {
-
-
-                _position._x = Program._gameManager._random.Next(1, Program._gameManager._map._map[0].Length - 1);
-                _position._y = Program._gameManager._random.Next(1, Program._gameManager._map._map.Length - 1);
-
-
-
-                if (Program._gameManager._map._map[_position._y][_position._x] != '`')
-                {
-
-                    SpawnCollectable();
-                }
-
-                _collectablesCurrentlyActive += 1;
-
-            }
-
-
+            base.SpawnCollectable();
         }
+
         public override void DisplayCollectable()
         {
-            Console.SetCursorPosition(_position._x, _position._y);
-            Console.ForegroundColor = _colour;
-            Console.Write(_display);
+            Console.SetCursorPosition(Position.X, Position.Y);
+            Console.ForegroundColor = Colour;
+            Console.Write(Display);
             Console.ResetColor();
         }
 
         public override void Collect()
         {
-            if (Program._gameManager._player._position._x == _position._x && Program._gameManager._player._position._y == _position._y)
+            if (Program.GameManager.Player.Position.X == Position.X && Program.GameManager.Player.Position.Y == Position.Y)
             {
-                Program._gameManager._player._position._x -= Program._gameManager._player._playerXInput;
-                Program._gameManager._player._position._y -= Program._gameManager._player._playerYInput;
-                _collectablesCount += 1;
-                _collectablesCurrentlyActive = 0;
-                Program._gameManager._player._health.Heal();
+                Program.GameManager.Player.Position.X -= Program.GameManager.Player.PlayXInput;
+                Program.GameManager.Player.Position.Y -= Program.GameManager.Player.PlayerYInput;
+                CollectableCount += 1;
+                IsCollected = true;
+                Program.GameManager.Player.Health.Heal();
+
             }
         }
     }

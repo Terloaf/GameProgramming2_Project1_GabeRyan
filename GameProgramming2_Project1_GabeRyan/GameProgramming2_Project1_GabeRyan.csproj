@@ -62,6 +62,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="collectableData.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="enemyData.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

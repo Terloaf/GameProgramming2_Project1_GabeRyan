@@ -12,26 +12,37 @@ namespace GameProgramming2_Project1_GabeRyan
 {
     internal class GameManager
     {
-        public bool _playerTurn = true;
-        public Map _map;
-        public Player _player;
-        public bool _isPlaying = true;
-        public List<Enemy> _enemies;
-        public List<Collectables> _collectableList;
-        public Random _random;
-        public string[] _enemyFile;
-        public bool _screenIsDirty = false;
+        public int score;
+        public bool PlayerTurn = true;
+        public Map Map;
+        public Player Player;
+        public bool IsPlaying = true;
+        public List<Enemy> Enemies;
+        public List<Collectables> Collectables;
+        public Random Random;
+        public string[] EnemyFile;
+        public string[] CollectableFile;
+        public bool ScreenIsDirty = false;
         //public string[] _enemyStringArray;
 
 
         public void FileEnemies(string enemyData)
         {
-            _enemyFile = File.ReadAllLines(enemyData);
+            EnemyFile = File.ReadAllLines(enemyData);
 
-            for(int i = 0; i < _enemyFile.Length; i++)
+            for(int i = 0; i < EnemyFile.Length; i++)
             {
-                LoadEnemy(_enemyFile[i]);
+                LoadEnemy(EnemyFile[i]);
                
+            }
+        }
+        public void FileCollectables(string collectableData)
+        {
+            CollectableFile = File.ReadAllLines(collectableData);
+
+            for(int i = 0; i < CollectableFile.Length; i++)
+            {
+                LoadCollectables(CollectableFile[i]);
             }
         }
         
@@ -51,119 +62,156 @@ namespace GameProgramming2_Project1_GabeRyan
             if (enemyStringArray[0] == "Enemy")
             {
                 Enemy e = new Enemy(enemyDisplay, enemyColour, enemyPos, enemyHealth);
-                _enemies.Add(e);
+                Enemies.Add(e);
             }
             if (enemyStringArray[0] == "EnemyBlind")
             {
                 EnemyBlind e = new EnemyBlind(enemyDisplay, enemyColour, enemyPos, enemyHealth);
-                _enemies.Add(e);
+                Enemies.Add(e);
             }
             if (enemyStringArray[0] == "EnemyScared")
             {
                  EnemyScared e = new EnemyScared(enemyDisplay, enemyColour, enemyPos, enemyHealth);
-                _enemies.Add(e);
+                Enemies.Add(e);
             }
             
 
         }
+
+        public void LoadCollectables(string collectableString)
+        {
+            string[] collectableStringArray;
+            collectableStringArray = collectableString.Split(',');
+
+
+
+            string collectableDisplay = collectableStringArray[1];
+            ConsoleColor.TryParse(collectableStringArray[2], out ConsoleColor collectableColour);
+            Position CollectablePos = new Position(int.Parse(collectableStringArray[3]), int.Parse(collectableStringArray[4]));
+
+            if (collectableStringArray[0] == "Collectable")
+            {
+                Collectables c = new Collectables(collectableDisplay, collectableColour, CollectablePos);
+                Collectables.Add(c);
+            }
+            if (collectableStringArray[0] == "CollectableHealth")
+            {
+                CollectablesHealthPickup c = new CollectablesHealthPickup(collectableDisplay, collectableColour, CollectablePos);
+                Collectables.Add(c);
+            }
+            if (collectableStringArray[0] == "CollectableTimeStop")
+            {
+                TimeStop c = new TimeStop(collectableDisplay, collectableColour, CollectablePos);
+                Collectables.Add(c);
+            }
+        }
         
+
 
         public void PlayGame()
         {
-            _screenIsDirty = true;
+            IsPlaying = true;
+            ScreenIsDirty = true;
             Initialize();
 
 
             Thread.Sleep(17);
 
 
-            while (_isPlaying)
+            while (IsPlaying)
             {
+
                 Thread.Sleep(17);
 
-                
+                Player.PlayerMove();
 
-
-                for (int i = 0; i < _collectableList.Count; i++)
+                for (int i = 0; i < Collectables.Count; i++)
                 {
-                    _collectableList[i].SpawnCollectable();
-                    _collectableList[i].Collect();
+
+                    Collectables[i].Collect();
+                    
                 }
 
-                _player.PlayerMove();
+               
 
-                if (_playerTurn == false)
+                if (PlayerTurn == false)
                 {
 
 
-                    for (int j = 0; j < _enemies.Count; j++)
+                    for (int j = 0; j < Enemies.Count; j++)
                     {
-                        _enemies[j].EnemyMove();
+                        Enemies[j].EnemyMove();
                     }
 
-                    _playerTurn = true;
+                    PlayerTurn = true;
                 }
 
                 GameOverCheck();
+                WinCheck();
+                Collectables.RemoveAll(c => c.IsCollected);
+
+
 
 
                 Draw();
-                
 
             }
         }
 
         private void Draw()
         {
-            if (_screenIsDirty == false)
+            if (ScreenIsDirty == false)
             {
                 return;
             }
-            _map.DisplayMap();
+            Map.DisplayMap();
 
-            _player.DisplayPlayer();
+            Player.DisplayPlayer();
             
-            for (int k = 0; k < _enemies.Count; k++)
+            for (int k = 0; k < Enemies.Count; k++)
             {
-                _enemies[k].DisplayEnemy();
+                Enemies[k].DisplayEnemy();
             }
-            for (int i = 0; i < _collectableList.Count; i++)
+            for (int i = 0; i < Collectables.Count; i++)
             {
-                _collectableList[i].DisplayCollectable();
+                Collectables[i].DisplayCollectable();
+                
+
             }
 
-            _screenIsDirty = false;
+            Console.SetCursorPosition(70, 26);
+            Console.WriteLine($"Score: {score}");
+            ScreenIsDirty = false;
         }
         private void Initialize()
         {
             Console.CursorVisible = false;
-            _map = new Map();
-            _player = new Player(display: "O", colour: ConsoleColor.Blue, position: new Position(1, 1), new Health(3));
-            Collectables collectables = new Collectables(position: new Position(0, 0), "P", ConsoleColor.Yellow);
-            CollectablesHealthPickup healthPickup = new CollectablesHealthPickup(position: new Position(0, 0), "H", ConsoleColor.Green);
-            TimeStop timeStop = new TimeStop(position: new Position(0, 0), "T", ConsoleColor.Gray);
-            _random = new Random();
-            _enemies = new List<Enemy>();
-            _collectableList = new List<Collectables>();
+            Map = new Map();
+            Player = new Player(display: "O", colour: ConsoleColor.Blue, position: new Position(1, 1), new Health(3));
+            //Collectables collectables = new Collectables(position: new Position(0, 0), "P", ConsoleColor.Yellow);
+            //CollectablesHealthPickup healthPickup = new CollectablesHealthPickup(position: new Position(0, 0), "H", ConsoleColor.Green);
+            //TimeStop timeStop = new TimeStop(position: new Position(0, 0), "T", ConsoleColor.Gray);
+            Random = new Random();
+            Enemies = new List<Enemy>();
+            Collectables = new List<Collectables>();
 
 
             FileEnemies("enemyData.txt");
 
-            _collectableList.Add(collectables);
-            _collectableList.Add(healthPickup);
-            _collectableList.Add(timeStop);
+
+            FileCollectables("collectableData.txt");
 
 
-            _map.LoadMap("mapData.txt");
+            Map.LoadMap("mapData.txt");
 
-            for (int i = 0; i < _map._map.Length; i++)
+            for (int i = 0; i < Map._map.Length; i++)
             {
-                for (int j = 0; j < _map._map[0].Length; j++)
+                for (int j = 0; j < Map._map[0].Length; j++)
                 {
 
-                    if (_map.CheckCharInBoarder(_map._map[i][j]))
+                    if (Map.CheckCharInBoarder(Map._map[i][j]))
                     {
-                        _map.SetOccupied(new Position(i, j), true);
+                        Map.SetOccupied(new Position(i, j), true);
                         
                     }
 
@@ -175,15 +223,57 @@ namespace GameProgramming2_Project1_GabeRyan
 
         public void GameOverCheck()
         {
-            if (_player._health._currentHealth <= 0)
+            if (Player.Health.CurrentHealth <= 0)
             {
-                Program._gameManager._isPlaying = false;
+                Program.GameManager.IsPlaying = false;
                 Console.Clear();
                 Console.WriteLine("You Lose");
                 Console.ReadKey();
-                Environment.Exit(0);
+                Console.ReadKey();
+                Console.Clear();
+                Console.WriteLine("Retry? Y/N");
+
+                ConsoleKeyInfo Input = Console.ReadKey(true);
+                
+                if (Input.Key == ConsoleKey.Y)
+                {
+                    PlayGame();
+                }
+                if(Input.Key == ConsoleKey.N)
+                {
+                    Environment.Exit(0);
+                }
             }
         }
 
+        public void WinCheck()
+        {
+            for (int i = 0; i < Collectables.Count; i++)
+            {
+
+                if (Collectables[i].CollectableCount == 25)
+                {
+                    Program.GameManager.IsPlaying = false;
+                    Console.Clear();
+                    Console.WriteLine("You Win!");
+                    Console.ReadKey();
+                    Console.ReadKey();
+                    Console.Clear();
+                    Console.WriteLine("Play Again?");
+
+                    ConsoleKeyInfo Input = Console.ReadKey(true);
+
+                    if (Input.Key == ConsoleKey.Y)
+                    {
+                        PlayGame();
+                    }
+                    if (Input.Key == ConsoleKey.N)
+                    {
+                        Environment.Exit(0);
+                    }
+                }
+            }
+            
+        }
     }
 }

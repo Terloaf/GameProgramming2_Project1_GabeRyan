@@ -35,13 +35,13 @@ namespace GameProgramming2_Project1_GabeRyan
         {
             // check _occupiedSpaces if position = true or false
 
-            return _occupiedSpaces[position._y, position._x];
+            return _occupiedSpaces[position.Y, position.X];
 
         }
 
         public void SetOccupied(Position position, bool state)
         {
-            _occupiedSpaces[position._x, position._y] = state;
+            _occupiedSpaces[position.X, position.Y] = state;
         }
 
 
@@ -75,18 +75,11 @@ namespace GameProgramming2_Project1_GabeRyan
                     Console.ResetColor();
                 }
 
-                
-
-
-
-
             }
 
-            
 
             Console.Write("\n");
-
-            
+    
 
         }
 

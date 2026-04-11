@@ -9,71 +9,45 @@ namespace GameProgramming2_Project1_GabeRyan
     
     internal class Collectables
     {
-        public int _collectablesCurrentlyActive = 0;
-        public Position _position;
-        public int _collectablesCount;
-        public string _display;
-        public ConsoleColor _colour;
-        public Collectables(Position position, string display, ConsoleColor colour)
+
+        public Position Position;
+        public int CollectableCount = 15;
+        public string Display;
+        public ConsoleColor Colour;
+        public bool IsCollected = false;
+        public Collectables(string display, ConsoleColor colour, Position position)
         {
-            _position = position;
-            _display = display;
-            _colour = colour;
+            Position = position;
+            Display = display;
+            Colour = colour;
         }
 
         public virtual void SpawnCollectable()
         {
-            DisplayScore();
+
             
-
-
-            if (_collectablesCurrentlyActive == 0)
-            {
-
-
-                _position._x = Program._gameManager._random.Next(1, Program._gameManager._map._map[0].Length - 1);
-                _position._y = Program._gameManager._random.Next(1, Program._gameManager._map._map.Length - 1);
-
-
-
-                if (Program._gameManager._map._map[_position._y][_position._x] != '`')
-                {
-
-                    SpawnCollectable();
-                }
-
-                _collectablesCurrentlyActive += 1;
-
-
-                
-
-            }
-
             
         }
 
         public virtual void DisplayCollectable()
         {
-            Console.SetCursorPosition(_position._x, _position._y);
-            Console.ForegroundColor = _colour;
-            Console.Write(_display);
+            Console.SetCursorPosition(Position.X, Position.Y);
+            Console.ForegroundColor = Colour;
+            Console.Write(Display);
             Console.ResetColor();
         }
 
-        public void DisplayScore()
-        {
-            Console.SetCursorPosition(50, 25);
-            Console.Write($"Score: {_collectablesCount}");
-        }
+
 
         public virtual void Collect()
         {
-            if (Program._gameManager._player._position._x == _position._x && Program._gameManager._player._position._y == _position._y)
+            if (Program.GameManager.Player.Position.X == Position.X && Program.GameManager.Player.Position.Y == Position.Y)
             {
-                Program._gameManager._player._position._x -= Program._gameManager._player._playerXInput;
-                Program._gameManager._player._position._y -= Program._gameManager._player._playerYInput;
-                _collectablesCount += 1;
-                _collectablesCurrentlyActive = 0;
+                Program.GameManager.Player.Position.X -= Program.GameManager.Player.PlayXInput;
+                Program.GameManager.Player.Position.Y -= Program.GameManager.Player.PlayerYInput;
+                Program.GameManager.score += 1;
+                IsCollected = true;
+                
             }
         }
     }

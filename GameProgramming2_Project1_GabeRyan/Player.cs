@@ -9,26 +9,26 @@ namespace GameProgramming2_Project1_GabeRyan
     internal class Player
     {
 
-        public Position _position;
-        public Health _health;
-        public string _pDisplay;
-        public ConsoleColor _pColour;
-        public int _playerXInput;
-        public int _playerYInput;
+        public Position Position;
+        public Health Health;
+        public string PDisplay;
+        public ConsoleColor PColour;
+        public int PlayXInput;
+        public int PlayerYInput;
 
         public Player(string display, ConsoleColor colour, Position position, Health health)
         {
 
-            _health = health;
-            _pDisplay = display;
-            _pColour = colour;
-            _position = position;
+            Health = health;
+            PDisplay = display;
+            PColour = colour;
+            Position = position;
         }
 
         public void PlayerMove()
         {
             
-            if (Program._gameManager._playerTurn == true)
+            if (Program.GameManager.PlayerTurn == true)
             {
                 
                 int playerXinput = 0;
@@ -47,58 +47,69 @@ namespace GameProgramming2_Project1_GabeRyan
 
 
                 
-                _position._x += playerXinput;
-                _position._y += playerYinput;
-                _playerXInput = playerXinput;
-                _playerYInput = playerYinput;
+                Position.X += playerXinput;
+                Position.Y += playerYinput;
+                PlayXInput = playerXinput;
+                PlayerYInput = playerYinput;
 
-                for(int i = 0; i < Program._gameManager._enemies.Count; i++)
+                for(int i = 0; i < Program.GameManager.Enemies.Count; i++)
                 {
-                    if (Program._gameManager._enemies[i]._position._x == _position._x && Program._gameManager._enemies[i]._position._y == _position._y)
+                    if (Program.GameManager.Enemies[i].Position.X == Position.X && Program.GameManager.Enemies[i].Position.Y == Position.Y)
                         {
-                        Program._gameManager._enemies[i]._health.TakeDmg();
-                            _position._x -= playerXinput;
-                            _position._y -= playerYinput;
-                            Program._gameManager._playerTurn = false;
+                        Program.GameManager.Enemies[i].Health.TakeDmg();
+                            Position.X -= playerXinput;
+                            Position.Y -= playerYinput;
+                            Program.GameManager.PlayerTurn = false;
                             return;
                         }
                 }
-
-
-
-                if (playerXinput == -1 && _position._x == -1)
+                for (int i = 0; i < Program.GameManager.Collectables.Count; i++)
                 {
-                    _position._x += 1;
-                    return;
-                }
-
-                if (playerXinput == 1 && _position._x == Program._gameManager._map._map[0].Length)
-                {
-                    _position._x -= 1;
-                    return;
-                }
-
-                if (playerYinput == -1 && _position._y == -1)
-                {
-                    _position._y += 1;
-                    return;
-                }
-                if (playerYinput == 1 && _position._y == Program._gameManager._map._map.Length)
-                {
-                    _position._y -= 1;
-                    return;
+                    if (Program.GameManager.Collectables[i].Position.X == Position.X && Program.GameManager.Collectables[i].Position.Y == Position.Y)
+                    {
+                        Program.GameManager.Collectables[i].Collect();
+                        Position.X -= playerXinput;
+                        Position.Y -= playerYinput;
+                        Program.GameManager.PlayerTurn = false;
+                        return;
+                    }
                 }
 
 
-                if (Program._gameManager._map.IsSpaceOccupied(_position) == true)
+
+                if (playerXinput == -1 && Position.X == -1)
                 {
-                    _position._x -= playerXinput;
-                    _position._y -= playerYinput;
+                    Position.X += 1;
+                    return;
+                }
+
+                if (playerXinput == 1 && Position.X == Program.GameManager.Map._map[0].Length)
+                {
+                    Position.X -= 1;
+                    return;
+                }
+
+                if (playerYinput == -1 && Position.Y == -1)
+                {
+                    Position.Y += 1;
+                    return;
+                }
+                if (playerYinput == 1 && Position.Y == Program.GameManager.Map._map.Length)
+                {
+                    Position.Y -= 1;
+                    return;
+                }
+
+
+                if (Program.GameManager.Map.IsSpaceOccupied(Position) == true)
+                {
+                    Position.X -= playerXinput;
+                    Position.Y -= playerYinput;
                 }
 
                 
-                Program._gameManager._playerTurn = false;
-                Program._gameManager._screenIsDirty = true;
+                Program.GameManager.PlayerTurn = false;
+                Program.GameManager.ScreenIsDirty = true;
                 
             }
             
@@ -110,13 +121,13 @@ namespace GameProgramming2_Project1_GabeRyan
 
         public void DisplayPlayer()
         {
-            Console.SetCursorPosition(_position._x, _position._y);
-            Console.ForegroundColor = _pColour;
-            Console.Write(_pDisplay);
+            Console.SetCursorPosition(Position.X, Position.Y);
+            Console.ForegroundColor = PColour;
+            Console.Write(PDisplay);
             Console.ResetColor();
 
-            Console.SetCursorPosition(50, 20);
-            Console.Write($"Player Health {_health._currentHealth}");
+            Console.SetCursorPosition(70, 20);
+            Console.Write($"Player Health {Health.CurrentHealth}");
 
         }
 

@@ -65,7 +65,7 @@ namespace GameProgramming2_Project1_GabeRyan
                     }
                     else if (_map[i][j] == '^')
                     {
-                        Console.ForegroundColor = ConsoleColor.DarkGreen;
+                        Console.ForegroundColor = ConsoleColor.White;
                     }
                     else if (_map[i][j] == '#')
                     {

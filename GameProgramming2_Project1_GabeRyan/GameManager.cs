@@ -30,29 +30,29 @@ namespace GameProgramming2_Project1_GabeRyan
         {
             EnemyFile = File.ReadAllLines(enemyData);
 
-            for(int i = 0; i < EnemyFile.Length; i++)
+            for (int i = 0; i < EnemyFile.Length; i++)
             {
                 LoadEnemy(EnemyFile[i]);
-               
+
             }
         }
         public void FileCollectables(string collectableData)
         {
             CollectableFile = File.ReadAllLines(collectableData);
 
-            for(int i = 0; i < CollectableFile.Length; i++)
+            for (int i = 0; i < CollectableFile.Length; i++)
             {
                 LoadCollectables(CollectableFile[i]);
             }
         }
-        
+
         public void LoadEnemy(string enemyString)
         {
 
             string[] enemyStringArray;
             enemyStringArray = enemyString.Split(',');
 
-            
+
 
             string enemyDisplay = enemyStringArray[1];
             ConsoleColor.TryParse(enemyStringArray[2], out ConsoleColor enemyColour);
@@ -71,10 +71,10 @@ namespace GameProgramming2_Project1_GabeRyan
             }
             if (enemyStringArray[0] == "EnemyScared")
             {
-                 EnemyScared e = new EnemyScared(enemyDisplay, enemyColour, enemyPos, enemyHealth);
+                EnemyScared e = new EnemyScared(enemyDisplay, enemyColour, enemyPos, enemyHealth);
                 Enemies.Add(e);
             }
-            
+
 
         }
 
@@ -105,7 +105,7 @@ namespace GameProgramming2_Project1_GabeRyan
                 Collectables.Add(c);
             }
         }
-        
+
 
 
         public void PlayGame()
@@ -129,10 +129,10 @@ namespace GameProgramming2_Project1_GabeRyan
                 {
 
                     Collectables[i].Collect();
-                    
+
                 }
 
-               
+
 
                 if (PlayerTurn == false)
                 {
@@ -167,7 +167,7 @@ namespace GameProgramming2_Project1_GabeRyan
             Map.DisplayMap();
 
             Player.DisplayPlayer();
-            
+
             for (int k = 0; k < Enemies.Count; k++)
             {
                 Enemies[k].DisplayEnemy();
@@ -175,7 +175,7 @@ namespace GameProgramming2_Project1_GabeRyan
             for (int i = 0; i < Collectables.Count; i++)
             {
                 Collectables[i].DisplayCollectable();
-                
+
 
             }
 
@@ -212,7 +212,7 @@ namespace GameProgramming2_Project1_GabeRyan
                     if (Map.CheckCharInBoarder(Map._map[i][j]))
                     {
                         Map.SetOccupied(new Position(i, j), true);
-                        
+
                     }
 
                 }
@@ -234,12 +234,12 @@ namespace GameProgramming2_Project1_GabeRyan
                 Console.WriteLine("Retry? Y/N");
 
                 ConsoleKeyInfo Input = Console.ReadKey(true);
-                
+
                 if (Input.Key == ConsoleKey.Y)
                 {
                     PlayGame();
                 }
-                if(Input.Key == ConsoleKey.N)
+                if (Input.Key == ConsoleKey.N)
                 {
                     Environment.Exit(0);
                 }
@@ -248,32 +248,29 @@ namespace GameProgramming2_Project1_GabeRyan
 
         public void WinCheck()
         {
-            for (int i = 0; i < Collectables.Count; i++)
+            if (score == 25)
             {
+                Program.GameManager.IsPlaying = false;
+                Console.Clear();
+                Console.WriteLine("You Win!");
+                Console.ReadKey();
+                Console.ReadKey();
+                Console.Clear();
+                Console.WriteLine("Play Again?");
 
-                if (Collectables[i].CollectableCount == 25)
+                ConsoleKeyInfo Input = Console.ReadKey(true);
+
+                if (Input.Key == ConsoleKey.Y)
                 {
-                    Program.GameManager.IsPlaying = false;
-                    Console.Clear();
-                    Console.WriteLine("You Win!");
-                    Console.ReadKey();
-                    Console.ReadKey();
-                    Console.Clear();
-                    Console.WriteLine("Play Again?");
-
-                    ConsoleKeyInfo Input = Console.ReadKey(true);
-
-                    if (Input.Key == ConsoleKey.Y)
-                    {
-                        PlayGame();
-                    }
-                    if (Input.Key == ConsoleKey.N)
-                    {
-                        Environment.Exit(0);
-                    }
+                    PlayGame();
                 }
+                if (Input.Key == ConsoleKey.N)
+                {
+                    Environment.Exit(0);
+                }
+
             }
-            
+
         }
     }
 }
